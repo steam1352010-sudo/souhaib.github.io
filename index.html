@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>facebook</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="logo">facebook</div>
+    <div id="topbarUser" class="topbar-user"></div>
+  </div>
+
+  <!-- شاشة تسجيل الدخول -->
+  <div id="loginScreen" class="screen login-box box">
+    <h3>تسجيل الدخول</h3>
+    <p id="loginError" class="error"></p>
+    <input type="email" id="loginEmail" placeholder="البريد الإلكتروني">
+    <input type="password" id="loginPassword" placeholder="كلمة المرور">
+    <button onclick="handleLogin()">دخول</button>
+    <p class="switch-link">ليس لديك حساب؟ <a onclick="showScreen('registerScreen')">إنشاء حساب جديد</a></p>
+  </div>
+
+  <!-- شاشة إنشاء حساب -->
+  <div id="registerScreen" class="screen login-box box" style="display:none;">
+    <h3>إنشاء حساب جديد</h3>
+    <p id="registerError" class="error"></p>
+    <input type="text" id="registerName" placeholder="الاسم الكامل">
+    <input type="email" id="registerEmail" placeholder="البريد الإلكتروني">
+    <input type="password" id="registerPassword" placeholder="كلمة المرور">
+    <button onclick="handleRegister()">إنشاء حساب</button>
+    <p class="switch-link">لديك حساب؟ <a onclick="showScreen('loginScreen')">تسجيل الدخول</a></p>
+  </div>
+
+  <!-- الصفحة الرئيسية -->
+  <div id="homeScreen" class="screen" style="display:none;">
+    <div class="container">
+      <div class="sidebar box">
+        <img id="sideAvatar" class="side-avatar" src="">
+        <h3 id="sideName"></h3>
+        <p id="sideFriends" class="muted"></p>
+        <a onclick="goToProfile(currentUser.id)">عرض ملفي الشخصي</a>
+      </div>
+      <div class="main">
+        <div class="box">
+          <h3>بماذا تفكر؟</h3>
+          <textarea id="postText" rows="2" placeholder="اكتب منشوراً..."></textarea>
+          <input type="file" id="postImage" accept="image/*">
+          <button onclick="createPost()">نشر</button>
+        </div>
+        <div id="feed"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- صفحة البروفايل -->
+  <div id="profileScreen" class="screen" style="display:none;">
+    <div class="container">
+      <div class="sidebar box">
+        <img id="profAvatar" class="side-avatar" src="">
+        <h3 id="profName"></h3>
+        <p id="profFriends" class="muted"></p>
+        <div id="friendActionBox"></div>
+        <a onclick="showScreen('homeScreen'); renderFeed();">العودة للرئيسية</a>
+      </div>
+      <div class="main">
+        <div id="profilePostBox"></div>
+        <div id="profileFeed"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
